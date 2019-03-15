@@ -1,0 +1,61 @@
+<LinearLayout android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:background="#00FFFFFF">
+    <LinearLayout android:layout_weight="2"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <RadioGroup
+        android:id="@+id/grAnimal"
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <RadioButton
+            android:checked="true"
+            android:id="@+id/rbBird"
+            android:padding="10dp"
+            android:text="Bird"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <RadioButton
+            android:id="@+id/rbDog"
+            android:padding="10dp"
+            android:text="Dog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <RadioButton
+            android:id="@+id/rbCat"
+            android:padding="10dp"
+            android:text="Cat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <RadioButton
+            android:id="@+id/rbPig"
+            android:padding="10dp"
+            android:text="Pig"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <RadioButton
+            android:id="@+id/rbRabbit"
+            android:padding="10dp"
+            android:text="Rabbit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </RadioGroup>
+</LinearLayout>
+    <LinearLayout
+        android:background="#fff"
+        android:layout_weight="1"
+        android:layout_width="200dp"
+        android:layout_height="215dp"
+        android:orientation="vertical">
+        <ImageView
+            android:background="@drawable/bird"
+            android:id="@+id/imAnimal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+</LinearLayout>
