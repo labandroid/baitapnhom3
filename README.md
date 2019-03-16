@@ -1,7 +1,10 @@
 # baitapnhom3
 Thành viên:
-Thanh(Nhóm trưởng:)
-Lý Văn Hiếu
-Phùng Anh Tuấn
-Nguyễn Minh Quân
+Nguyễn Phạm Công Thanh(Nhóm trưởng:) _ N15DCAT030
+
+Lý Văn Hiếu _ N15DCAT007
+
+Phùng Anh Tuấn _ N15DCAT032
+
+Nguyễn Minh Quân _ N15DCAT019
 
