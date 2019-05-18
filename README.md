@@ -10,7 +10,13 @@ Nguyễn Minh Quân _ N15DCAT019
 
 !!! THÔNG TIN / NHIỆM VỤ / TIẾN ĐỘ !!!
 
-1.Chức năng & phân công nhiệm vụ:
-2.Tiến độ Project
+1.Chức năng 
+ -Hẹn Giờ
+ -Chọn nhạc trong danh sách.
+2.Tiến độ Project: 
+Ngày bắt đầu: 10/04
+Hoàn Thành Ngày: 11/0 5
+
 3.Báo cáo
+
 
