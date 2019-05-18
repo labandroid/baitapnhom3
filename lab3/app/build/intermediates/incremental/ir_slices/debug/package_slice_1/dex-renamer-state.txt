@@ -1,0 +1,4 @@
+#Sat Mar 09 04:49:11 ICT 2019
+base.0=D\:\\Project\\ChangeAnimal\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\1
+path.0=classes.dex
+renamed.0=classes.dex
