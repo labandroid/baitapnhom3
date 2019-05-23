@@ -109,7 +109,7 @@ public class AlarmAdapter extends RecyclerView.Adapter {
         }
 
 
-        // TODO: 6/15/2018  this bind view when from mAlarms arrayList
+        //  TODO: this bind view when from mAlarms arrayList
         private void bindView(Alarm alarm) {
             // set time's text
             time.setText(getStringFromTime(alarm));
@@ -131,7 +131,7 @@ public class AlarmAdapter extends RecyclerView.Adapter {
             }
         }
 
-        // TODO: 6/15/2018 return string from Alarm
+        // TODO:  return string from Alarm
         private String getStringFromTime(Alarm alarm) {
 
             int minute = alarm.getMinute_x(); // minute of alarm

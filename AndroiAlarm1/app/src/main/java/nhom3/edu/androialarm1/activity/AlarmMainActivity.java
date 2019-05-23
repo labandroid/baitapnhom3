@@ -226,6 +226,7 @@ public class AlarmMainActivity extends AppCompatActivity implements AlarmAdapter
         Intent intent1 = new Intent(AlarmMainActivity.this, AlarmReceiver.class);
         // đặt loại intent Constants.ADD_INTENT or Constants.OFF_INTENT
         intent1.putExtra("intentType", intentType);
+
         // đặt alarm'id  để so sánh với pendingIntent'id trong  AlarmService
         intent1.putExtra("AlarmId", (int) alarm.getId());
         // this sent broadCast right a way
@@ -256,8 +257,6 @@ public class AlarmMainActivity extends AppCompatActivity implements AlarmAdapter
         Intent intent = new Intent(AlarmMainActivity.this, AlarmReceiver.class);
         // đặt loại intent để kiểm tra xem mục đích kích hoạt  add or cancel
         intent.putExtra("intentType", Constants.ADD_INTENT);
-        ////
-        intent.putExtra("whale_choice", Constants.ADD_INTENT);
         // đặt id vào intent
         intent.putExtra("PendingId", alarmId);
         // this pendingIntent include alarm id  to manage

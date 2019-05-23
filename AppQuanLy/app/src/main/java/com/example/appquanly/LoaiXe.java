@@ -13,6 +13,9 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+//Kế thừa Interface OnClickListener
+//phương thức onClick sẽ có nhiệm vụ là lắng nghe các sự kiện click vào View, nếu có phương thức này sẽ được gọi đến.
+
 public class LoaiXe extends AppCompatActivity implements View.OnClickListener {
     List<LoaiXeModel> listLoaiXe;
     LoaiXeAdapter loaiXeAdapter;
@@ -26,7 +29,7 @@ public class LoaiXe extends AppCompatActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loaixe);
 
-        listView = findViewById(R.id.listViewLoaiXe);
+        listView = findViewById(R.id.listViewLoaiXe);// sử dụng findViewById để tìm và ánh xạ control tù File Xml vào biến listView
         btnThem = findViewById(R.id.btnThem);
         btnSua = findViewById(R.id.btnSua);
         btnXoa = findViewById(R.id.btnXoa);
@@ -34,18 +37,21 @@ public class LoaiXe extends AppCompatActivity implements View.OnClickListener {
         edTenloai= findViewById(R.id.edTenLoai);
         edXuatXu = findViewById(R.id.edXuatXu);
         dbManager = new DBManager(this);
-        initData();
-        btnThemXe.setOnClickListener(this);
+        initData();// gọi hàm initData.
+        btnThemXe.setOnClickListener(this);// bắt sự kiện cho các nút thêm xe, thêm , sửa xóa,
         btnThem.setOnClickListener(this);
         btnSua.setOnClickListener(this);
         btnXoa.setOnClickListener(this);
+		TODO: Sự kiện chọn 1 item trong listView.
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+				//gọi hàm updateView
                 updateView(position,false);
             }
         });
 
+		//Xử lí sự kiện khi người dùng nhấn giữ vào item trong listview LongClick
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
@@ -58,7 +64,7 @@ public class LoaiXe extends AppCompatActivity implements View.OnClickListener {
         });
 
     }
-
+	TODO: kết nối Loại xe và Quản lí xe. nhận dữ liệu từ Quản lí Xe 
     private void goThemXe(){
         Intent intent = new Intent(this, QuanLyXe.class);
         startActivity(intent);

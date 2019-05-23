@@ -171,7 +171,7 @@ public class AddAlarmActivity extends AppCompatActivity implements AdapterView.O
     }
 
 
-    // TODO:  báo thức trả về này từ timePicker được bật bật theo mặc định
+    // TODO: Hẹn giờ... báo thức trả về này từ timePicker được bật bật theo mặc định
     private Alarm initAlarm() {
         // dat on va off theo mac dinh, 1 is on and 0 is off
         int toggleOn = 1;
