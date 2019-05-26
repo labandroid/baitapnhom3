@@ -37,6 +37,7 @@ public class AlarmMainActivity extends AppCompatActivity implements AlarmAdapter
     private DataBaseManager dataBaseManager;
     // cái này để quản lý alarmdapter như ArrayList
     private AlarmAdapter alarmAdapter;
+    Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +62,6 @@ public class AlarmMainActivity extends AppCompatActivity implements AlarmAdapter
         // đặt adapter cho recycle view
         recyclerView.setAdapter(alarmAdapter);
     }
-
     @OnClick(R.id.openAdd)
     public void onOpenAddAlarm(View view) {
         //TODO: xử lí khi người dùng click on "+" button bắt đầu new intent với request code
@@ -221,12 +221,13 @@ public class AlarmMainActivity extends AppCompatActivity implements AlarmAdapter
     }
 
     // TODO: điều này sẽ gửi intent tới AlarmReceiver
-    private void sendIntent(Alarm alarm, String intentType) {
+    private void sendIntent(Alarm alarm, String intentType ) {
+        Integer get_your_whale_choice = intent.getExtras().getInt("whale_choice");
         // intent1 gửi đến AlarmReceiver
         Intent intent1 = new Intent(AlarmMainActivity.this, AlarmReceiver.class);
         // đặt loại intent Constants.ADD_INTENT or Constants.OFF_INTENT
         intent1.putExtra("intentType", intentType);
-
+        intent1.putExtra("whale_choice", get_your_whale_choice);
         // đặt alarm'id  để so sánh với pendingIntent'id trong  AlarmService
         intent1.putExtra("AlarmId", (int) alarm.getId());
         // this sent broadCast right a way
@@ -257,6 +258,8 @@ public class AlarmMainActivity extends AppCompatActivity implements AlarmAdapter
         Intent intent = new Intent(AlarmMainActivity.this, AlarmReceiver.class);
         // đặt loại intent để kiểm tra xem mục đích kích hoạt  add or cancel
         intent.putExtra("intentType", Constants.ADD_INTENT);
+
+        intent.putExtra("whale_choice", Constants.ADD_INTENT);
         // đặt id vào intent
         intent.putExtra("PendingId", alarmId);
         // this pendingIntent include alarm id  to manage
@@ -275,7 +278,6 @@ public class AlarmMainActivity extends AppCompatActivity implements AlarmAdapter
                 calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, alarmIntent);
 
     }
-
     // TODO:  hủy pendingIntent của the alarm
     private void deleteCancel(Alarm alarm) {
         // nếu user clicl delete or cancel alarm  thì the pendingIntent cũng sẽ canceled bởi AlarmManager

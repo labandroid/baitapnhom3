@@ -23,7 +23,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class AddAlarmActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener  {
+public class AddAlarmActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     @BindView(R.id.toolBarAdd)
     Toolbar toolBarAdd;
     @BindView(R.id.addAlarm)
@@ -58,6 +58,8 @@ public class AddAlarmActivity extends AppCompatActivity implements AdapterView.O
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner
         spinner.setAdapter(adapter);
+        // Set an onclick listener to the onItemSelected method
+        spinner.setOnItemSelectedListener(this);
 
     }
 
@@ -122,20 +124,19 @@ public class AddAlarmActivity extends AppCompatActivity implements AdapterView.O
 
     }
 
+    //xử ls nút thêm hoăc sửa
 
     @OnClick(R.id.addAlarm)
     public void onClick(View v) {
-        // TODO: xu li khi nguoi dung an nut add hoac edit
         Intent intent = new Intent(this, AlarmMainActivity.class);
         // TODO: tao alarm tu time picker
         Alarm alarm = initAlarm();
 
         if (addScreen) {
             // tu thoi diem them moi doi tuong Alarm duoc gan cho 1 id de quan li
-            // this id is unique, using system current time in millisecond.
-            //  This id would be use for pendingIntent to manage multiple PendingIntent,
             alarm.setId((int) System.currentTimeMillis());
             intent.putExtra("Alarm", alarm);
+            intent.putExtra("whale_choice", choose_whale_sound);
             // dat result tu  AlarmMainActivity voi intent
             setResult(RESULT_OK, intent);
             // phuogn thuc ket thuc la bat buoc neu activity nay duoc bat dau boi startActivityForResult
@@ -207,22 +208,13 @@ public class AddAlarmActivity extends AppCompatActivity implements AdapterView.O
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        // An item was selected. You can retrieve the selected item using
-        // parent.getItemAtPosition(pos)
 
-        // outputting whatever id the user has selected
-        //Toast.makeText(parent.getContext(), "the spinner item is "
-        //        + id, Toast.LENGTH_SHORT).show();
         choose_whale_sound = (int) id;
-
 
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
-        // Another interface callback
 
     }
-
-
 }

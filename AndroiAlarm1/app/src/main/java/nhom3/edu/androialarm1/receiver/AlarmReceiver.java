@@ -3,7 +3,6 @@ package nhom3.edu.androialarm1.receiver;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-
 import nhom3.edu.androialarm1.service.AlarmService;
 import nhom3.edu.androialarm1.ultil.Constants;
 
@@ -12,6 +11,7 @@ public class AlarmReceiver extends BroadcastReceiver {
     public static int pendingId;
     @Override
     public void onReceive(Context context, Intent intent) {
+
         // TODO: This method is called when the BroadcastReceiver is receiving
 
         if (intent != null) {
@@ -42,8 +42,8 @@ public class AlarmReceiver extends BroadcastReceiver {
                 e.printStackTrace();
             }
 
-            Integer get_your_whale_choice = intent.getExtras().getInt("whale_choice");
-            intentToService.putExtra("whale_choice", Constants.ADD_INTENT);
+            Integer your_whale_choice = intent.getExtras().getInt("whale_choice");
+            intentToService.putExtra("whale_choice", your_whale_choice);
             context.startService(intentToService);
 
         }

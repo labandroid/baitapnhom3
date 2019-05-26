@@ -10,6 +10,8 @@ import android.provider.Settings;
 import java.util.Random;
 import android.util.Log;
 import android.os.Vibrator;
+import android.media.AudioManager;
+
 
 
 import nhom3.edu.androialarm1.R;
@@ -20,6 +22,7 @@ public class AlarmService extends Service {
     MediaPlayer mediaPlayer; // this object to manage media
     int startId;
     boolean isRunning;
+    private Vibrator vibrator;
 
     @Override
     public void onCreate() {
@@ -28,6 +31,8 @@ public class AlarmService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        long[] pattern = {0, 3000, 1000};
         //TODO: processing on and off ringtone
         // get string from intent
         String on_Off = intent.getExtras().getString("ON_OFF");
@@ -74,7 +79,6 @@ public class AlarmService extends Service {
                 } else if (whale_number == 2) {
                     // create an instance of the media player
                     mediaPlayer = MediaPlayer.create(this, R.raw.humpback_contact_call_moo);
-                    // start the ringtone
                     mediaPlayer.start();
 
                 } else if (whale_number == 3) {
