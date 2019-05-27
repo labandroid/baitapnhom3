@@ -136,6 +136,7 @@ public class AddAlarmActivity extends AppCompatActivity implements AdapterView.O
             // tu thoi diem them moi doi tuong Alarm duoc gan cho 1 id de quan li
             alarm.setId((int) System.currentTimeMillis());
             intent.putExtra("Alarm", alarm);
+            Log.e("AAAADD",choose_whale_sound+"");
             intent.putExtra("whale_choice", choose_whale_sound);
             // dat result tu  AlarmMainActivity voi intent
             setResult(RESULT_OK, intent);
@@ -208,7 +209,6 @@ public class AddAlarmActivity extends AppCompatActivity implements AdapterView.O
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
         choose_whale_sound = (int) id;
 
     }

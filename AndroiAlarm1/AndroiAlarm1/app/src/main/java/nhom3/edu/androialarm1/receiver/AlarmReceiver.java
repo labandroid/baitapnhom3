@@ -3,6 +3,8 @@ package nhom3.edu.androialarm1.receiver;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
+
 import nhom3.edu.androialarm1.service.AlarmService;
 import nhom3.edu.androialarm1.ultil.Constants;
 
@@ -25,8 +27,7 @@ public class AlarmReceiver extends BroadcastReceiver {
                         // chỉ định  pendingId
                         pendingId = intent.getExtras().getInt("PendingId");
                         intentToService.putExtra("ON_OFF", Constants.ADD_INTENT);
-                        context.startService(intentToService);
-
+                       // context.startService(intentToService);
                         break;
                     case Constants.OFF_INTENT:
                         // nhận alarm'id từ extras
@@ -34,15 +35,15 @@ public class AlarmReceiver extends BroadcastReceiver {
                         // sending to AlarmService
                         intentToService.putExtra("ON_OFF", Constants.OFF_INTENT);
                         intentToService.putExtra("AlarmId", alarmId);
-                        context.startService(intentToService);
+                        //context.startService(intentToService);
 
                         break;
                 }
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
             Integer your_whale_choice = intent.getExtras().getInt("whale_choice");
+            Log.e("AAA",your_whale_choice+"");
             intentToService.putExtra("whale_choice", your_whale_choice);
             context.startService(intentToService);
 

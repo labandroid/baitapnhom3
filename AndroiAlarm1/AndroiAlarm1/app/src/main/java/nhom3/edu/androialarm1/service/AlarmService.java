@@ -23,7 +23,6 @@ public class AlarmService extends Service {
     int startId;
     boolean isRunning;
     private Vibrator vibrator;
-
     @Override
     public void onCreate() {
         super.onCreate();
@@ -37,7 +36,7 @@ public class AlarmService extends Service {
         // get string from intent
         String on_Off = intent.getExtras().getString("ON_OFF");
         Integer whale_sound_choice = intent.getExtras().getInt("whale_choice");
-
+        Log.e("AAASV",whale_sound_choice+" ");
         assert on_Off != null;
         switch (on_Off) {
             case Constants.ADD_INTENT:
@@ -51,7 +50,6 @@ public class AlarmService extends Service {
                 startId = 0;
                 break;
         }
-
         // if else statements
 
         // if there is no music playing, and the user pressed "alarm on"
@@ -135,6 +133,7 @@ public class AlarmService extends Service {
                 mediaPlayer = MediaPlayer.create(this, R.raw.humpback_feeding_call);
                 mediaPlayer.start();
             } else if (whale_sound_choice == 5) {
+                Log.e("AAA","Hong nhan");
                 mediaPlayer = MediaPlayer.create(this, R.raw.humpback_flipper_splash);
                 mediaPlayer.start();
             } else if (whale_sound_choice == 6) {

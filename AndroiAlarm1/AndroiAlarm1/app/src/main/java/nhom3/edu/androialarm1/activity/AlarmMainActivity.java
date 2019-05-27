@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -38,6 +39,7 @@ public class AlarmMainActivity extends AppCompatActivity implements AlarmAdapter
     // cái này để quản lý alarmdapter như ArrayList
     private AlarmAdapter alarmAdapter;
     Intent intent;
+    private int songId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,6 +91,7 @@ public class AlarmMainActivity extends AppCompatActivity implements AlarmAdapter
                 alarmAdapter.notifyDataSetChanged();
                 // add it to database
                 dataBaseManager.insert(alarm);
+                songId = data.getExtras().getInt("whale_choice");
                 // set new PendingIntent
                 setAlarm(alarm, 0);
             }
@@ -222,12 +225,13 @@ public class AlarmMainActivity extends AppCompatActivity implements AlarmAdapter
 
     // TODO: điều này sẽ gửi intent tới AlarmReceiver
     private void sendIntent(Alarm alarm, String intentType ) {
-        Integer get_your_whale_choice = intent.getExtras().getInt("whale_choice");
+
+        //Integer get_your_whale_choice = intent.getExtras().getInt("whale_choice",0);
         // intent1 gửi đến AlarmReceiver
         Intent intent1 = new Intent(AlarmMainActivity.this, AlarmReceiver.class);
         // đặt loại intent Constants.ADD_INTENT or Constants.OFF_INTENT
         intent1.putExtra("intentType", intentType);
-        intent1.putExtra("whale_choice", get_your_whale_choice);
+        //intent1.putExtra("whale_choice", get_your_whale_choice);
         // đặt alarm'id  để so sánh với pendingIntent'id trong  AlarmService
         intent1.putExtra("AlarmId", (int) alarm.getId());
         // this sent broadCast right a way
@@ -259,9 +263,11 @@ public class AlarmMainActivity extends AppCompatActivity implements AlarmAdapter
         // đặt loại intent để kiểm tra xem mục đích kích hoạt  add or cancel
         intent.putExtra("intentType", Constants.ADD_INTENT);
 
-        intent.putExtra("whale_choice", Constants.ADD_INTENT);
+        intent.putExtra("whale_choice", songId);
         // đặt id vào intent
         intent.putExtra("PendingId", alarmId);
+
+
         // this pendingIntent include alarm id  to manage
         PendingIntent alarmIntent = PendingIntent.getBroadcast(AlarmMainActivity.this, alarmId,
                 intent, flags);
@@ -273,7 +279,6 @@ public class AlarmMainActivity extends AppCompatActivity implements AlarmAdapter
         // setInExactRepeating sẽ đặt báo thức nhiều lần và điều này có thể không
         // trigger at the right time( at the first second start) but this will save the battery.
         // "AlarmManager.RTC_WAKEUP" cho phép ứng dụng này từ thời gian rảnh và thời gian này dựa trên thiết bị
-
         alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,
                 calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, alarmIntent);
 
