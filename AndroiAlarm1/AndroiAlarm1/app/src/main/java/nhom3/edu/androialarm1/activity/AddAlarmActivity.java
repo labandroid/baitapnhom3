@@ -84,63 +84,45 @@ public class AddAlarmActivity extends AppCompatActivity implements AdapterView.O
         });
     }
 
-    // TODO: this set screen's text for activity
     private void setScreen() {
-        // lay thong tin intent tu main activity toi set screen cho  activity nay
         intentInfor = getIntent();
         String screenType = intentInfor.getStringExtra("screenType");
         if (screenType.contains("add")) {
-            // neu text contsins "add" thi set text cho screen add
             activityName.setText(R.string.add);
             addAlarm.setText(R.string.add);
             addScreen = true;
 
         } else if (screenType.contains("edit")) {
-            // neu edit screen
             try {
-                // lay doi tuong alarm tu  intent
                 alarmEdit = (Alarm) intentInfor.getExtras().getSerializable("AlarmEdit");
             } catch (Exception e) {
                 Log.e("setScreen exception", e.getMessage() + " cause: " + e.getCause());
             }
 
-            // dat hour and minute tu the time picker voi  thong tin time  tu edit alarm
-            // this setHour and setMinute require API 23 and upper
             if (alarmEdit != null) {
                 timePicker.setHour(alarmEdit.getHour_x());
                 timePicker.setMinute(alarmEdit.getMinute_x());
-                // dat ten alarm
                 name_Alarm.setText(alarmEdit.getAlarm_Name());
-                // set text activity's title
                 activityName.setText(R.string.edit);
-                // set text for the button
                 addAlarm.setText(R.string.edit);
             }
 
-
-            // assign addScreen
             addScreen = false;
         }
 
     }
 
-    //xử ls nút thêm hoăc sửa
-
     @OnClick(R.id.addAlarm)
     public void onClick(View v) {
         Intent intent = new Intent(this, AlarmMainActivity.class);
-        // TODO: tao alarm tu time picker
         Alarm alarm = initAlarm();
 
         if (addScreen) {
-            // tu thoi diem them moi doi tuong Alarm duoc gan cho 1 id de quan li
             alarm.setId((int) System.currentTimeMillis());
             intent.putExtra("Alarm", alarm);
             Log.e("AAAADD",choose_whale_sound+"");
             intent.putExtra("whale_choice", choose_whale_sound);
-            // dat result tu  AlarmMainActivity voi intent
             setResult(RESULT_OK, intent);
-            // phuogn thuc ket thuc la bat buoc neu activity nay duoc bat dau boi startActivityForResult
             finish();
 
         } else {
